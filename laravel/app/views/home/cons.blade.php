@@ -23,14 +23,21 @@
 			<h1>PHOTO'S</h1>
 			<?php
 
-	$con = mysqli_connect("localhost","root","682130","teamhc");
-		
+	try
+	{		
+		$con = mysqli_connect("localhost","root","","teamhc");
+	}
+	catch(Exception $e)
+	{
+		echo "NO DATABASE FOUND"; ?><br><?php
+	}	
+	
 	if (mysqli_connect_errno()) {
-  		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  		echo "FAILED TO CONNECT TO MYSQL: " . strtoupper(mysqli_connect_error());
 	}
 	else {
 		//echo "database connected";
-	}
+	
 	echo "<br>";
 
 	$result = mysqli_query($con,"SELECT * FROM Photos");
@@ -78,6 +85,7 @@
   			</tr>
   			</table>
   			<?php
+		}
 	}
 	 
 ?>			
